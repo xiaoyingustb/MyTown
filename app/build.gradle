@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "cn.ifingers.mytown"
+        minSdkVersion 10
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+
+        manifestPlaceholders = [
+                GETUI_APP_ID : "2Y0jlsTLoEAMARWcw5Xhh",
+                GETUI_APP_KEY : "tKFWT8zXgnAi0GstvxtgJ2",
+                GETUI_APP_SECRET : "x1X2PpeEvH9WuNyDCFKd44",
+                PACKAGE_NAME : "cn.ifingers.mytown"
+        ]
+    }
+
+    useLibrary 'org.apache.http.legacy'
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:design:23.3.0'
+    compile 'com.getui:sdk:2.8.1.0'
+    compile 'com.getui:ext:2.0.3'
+    compile 'com.android.support:support-v4:+'
+    compile files('libs/AMap_2DMap_V2.8.1_20160202.jar')
+    compile files('libs/AMap_Location_V2.2.0_20151222.jar')
+    compile files('libs/umeng-analytics-v5.6.7.jar')
+    compile project(':PullToRefreshLibrary')
+    compile files('libs/gson-2.2.4.jar')
+    compile files('libs/xUtils-2.6.14.jar')
+    compile files('libs/vitamio.jar')
+}
+

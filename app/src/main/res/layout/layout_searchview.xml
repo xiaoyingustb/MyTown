@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <LinearLayout
+        android:id="@+id/edit_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/activity_bar_item_padding"
+        android:paddingBottom="@dimen/activity_bar_item_padding"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+        
+        <ImageView 
+            android:id="@+id/searchview_back"
+            android:layout_width="@dimen/activity_bar_item_length"
+            android:layout_height="@dimen/activity_bar_item_length"
+            android:src="@drawable/ic_back"
+            android:contentDescription="@null"
+            android:padding="@dimen/activity_bar_item_padding"
+            android:layout_gravity="center_vertical"/>
+        
+        <cn.ifingers.mytown.view.EditView
+            android:id="@+id/searchview_input"
+            android:layout_height="@dimen/activity_bar_item_length"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:hint="@string/search"
+            android:textSize="@dimen/activity_bar_text_size"
+            android:gravity="center"
+            android:drawableLeft="@drawable/search_icon"
+            android:drawableRight="@drawable/search_delete"/>
+        
+        <TextView 
+            android:id="@+id/searchview_searchtv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_bar_item_padding"
+            android:textColor="@drawable/bar_text_bg"
+            android:text="@string/search"
+            android:textSize="@dimen/activity_bar_text_size"/>
+        
+    </LinearLayout>
+    
+    <ListView 
+        android:id="@+id/searchview_lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:visibility="gone"
+        android:background="@color/white"></ListView>
+
+</LinearLayout>

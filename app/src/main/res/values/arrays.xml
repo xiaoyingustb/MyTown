@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="hot_search">
+
+        <item >东坡肉</item>
+        <item >酸菜鱼</item>
+        <item >蒜薹炒肉</item>
+        <item >清蒸鳜鱼</item>
+        <item >羊蝎子</item>
+        <item >辣子鸡丁</item>
+        <item >回锅肉</item>
+        <item >牛肉拉面</item>
+        <item >小鸡炖蘑菇</item>
+        <item >猪肉炖粉条</item>
+        <item >小炒青菜</item>
+        <item >焖茄子</item>
+        <item >叫花鸡</item>
+        <item >酱牛肉</item>
+        <item >芋艿炒肉</item>
+        <item >清蒸莲藕</item>
+        <item >扬州炒饭</item>
+        <item >生煎</item>
+
+    </string-array>
+
+</resources>

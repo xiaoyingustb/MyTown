@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/main_frame"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <RadioGroup
+        android:id="@+id/main_bottom_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="5dp" >
+
+        <RadioButton
+            android:id="@+id/main_first_bottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/first_bottom_selector"
+            android:gravity="center"
+            android:paddingLeft="0dp"
+            android:text="@string/first_page"
+            android:textColor="@drawable/bottom_textselector" />
+
+        <RadioButton
+            android:id="@+id/main_second_bottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/second_bottom_selector"
+            android:gravity="center"
+            android:paddingLeft="0dp"
+            android:text="@string/shops"
+            android:textColor="@drawable/bottom_textselector" />
+
+        <RadioButton
+            android:id="@+id/main_third_bottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/third_bottom_selector"
+            android:gravity="center"
+            android:paddingLeft="0dp"
+            android:text="@string/realtime_monitor"
+            android:textColor="@drawable/bottom_textselector" />
+
+        <RadioButton
+            android:id="@+id/main_fourth_bottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/fourth_bottom_drawable"
+            android:gravity="center"
+            android:paddingLeft="0dp"
+            android:text="@string/my"
+            android:textColor="@drawable/bottom_textselector" />
+    </RadioGroup>
+
+</LinearLayout>
