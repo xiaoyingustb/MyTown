@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lidroid.xutils.HttpUtils;
@@ -49,7 +50,12 @@ public class ShopsFragment extends BaseFragment {
         mListView.setOnPullEventListener(new PullToRefreshBase.OnPullEventListener<ListView>() {
             @Override
             public void onPullEvent(PullToRefreshBase<ListView> refreshView, PullToRefreshBase.State state, PullToRefreshBase.Mode direction) {
-
+                ILoadingLayout loadingLayoutProxy = refreshView.getLoadingLayoutProxy();
+                if(state == PullToRefreshBase.State.PULL_TO_REFRESH){
+                    loadingLayoutProxy.setLoadingDrawable(null);
+                }else if(state == PullToRefreshBase.State.REFRESHING){
+                    loadingLayoutProxy.setLoadingDrawable(getResources().getDrawable(R.drawable.refresh_rotate));
+                }
             }
         });
         setEvents();
@@ -67,7 +73,6 @@ public class ShopsFragment extends BaseFragment {
                 return false;
             }
         }).sendEmptyMessageDelayed(0, 200);
-
     }
 
     private void setEvents() {
