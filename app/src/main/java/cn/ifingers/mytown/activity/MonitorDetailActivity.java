@@ -55,8 +55,6 @@ public class MonitorDetailActivity extends Activity implements MediaPlayer.OnCom
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Log.i(TAG, "onCreate");
-
         boolean isInitialized = LibsChecker.checkVitamioLibs(this);
         if(!isInitialized){
             Log.i(TAG, String.valueOf(isInitialized));
