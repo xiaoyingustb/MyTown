@@ -1,5 +1,7 @@
 package cn.ifingers.mytown.fragments;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -9,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
@@ -26,6 +30,8 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import java.util.List;
 
 import cn.ifingers.mytown.R;
+import cn.ifingers.mytown.activity.SearchActivity;
+import cn.ifingers.mytown.activity.ShopsMapActivity;
 import cn.ifingers.mytown.adapters.ShopLvAdapter;
 import cn.ifingers.mytown.entities.GoodsInfo;
 import cn.ifingers.mytown.entities.ResponseObject;
@@ -33,11 +39,15 @@ import cn.ifingers.mytown.entities.ResponseObject;
 /**
  * Created by syfing on 2016/5/15.
  */
-public class ShopsFragment extends BaseFragment {
+public class ShopsFragment extends BaseFragment implements View.OnClickListener {
+    private Activity mParentActivity;
 
     private PullToRefreshListView mListView;
     private List<GoodsInfo> mShopDatas;
     private ShopLvAdapter mShopsAdapter;
+
+    private Button mMapIndicatorImg;
+    private Button mSearchIndicatorImg;
 
     private int page = 0,size = 12;
 
@@ -45,8 +55,18 @@ public class ShopsFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mParentActivity = getActivity();
         View view = inflater.inflate(R.layout.fragment_shops, null);
         mListView = (PullToRefreshListView) view.findViewById(R.id.shops_pulllv);
+        mMapIndicatorImg = (Button) view.findViewById(R.id.shops_map_indicator);
+        mSearchIndicatorImg = (Button) view.findViewById(R.id.shops_search_indicator);
+
+        mMapIndicatorImg.setClickable(true);
+        mSearchIndicatorImg.setClickable(true);
+
+        mMapIndicatorImg.setOnClickListener(this);
+        mSearchIndicatorImg.setOnClickListener(this);
+
         mListView.setOnPullEventListener(new PullToRefreshBase.OnPullEventListener<ListView>() {
             @Override
             public void onPullEvent(PullToRefreshBase<ListView> refreshView, PullToRefreshBase.State state, PullToRefreshBase.Mode direction) {
@@ -55,6 +75,16 @@ public class ShopsFragment extends BaseFragment {
                     loadingLayoutProxy.setLoadingDrawable(null);
                 }else if(state == PullToRefreshBase.State.REFRESHING){
                     loadingLayoutProxy.setLoadingDrawable(getResources().getDrawable(R.drawable.refresh_rotate));
+                }
+
+                if(direction == PullToRefreshBase.Mode.PULL_FROM_END){
+                    loadingLayoutProxy.setPullLabel("上拉加载...");
+                    loadingLayoutProxy.setReleaseLabel("放开以加载...");
+                    loadingLayoutProxy.setRefreshingLabel("载入中...");
+                }else{
+                    loadingLayoutProxy.setPullLabel("下拉刷新...");
+                    loadingLayoutProxy.setReleaseLabel("放开以刷新...");
+                    loadingLayoutProxy.setRefreshingLabel("加载中...");
                 }
             }
         });
@@ -76,7 +106,6 @@ public class ShopsFragment extends BaseFragment {
     }
 
     private void setEvents() {
-
         //设置数据的加载模式
         mListView.setMode(PullToRefreshBase.Mode.BOTH);
 
@@ -110,8 +139,6 @@ public class ShopsFragment extends BaseFragment {
     }
 
     private void setDatas( final boolean isDown) {//requst.getParameter();
-
-
         if(isDown){
             //查询下一页的信息
             page++;
@@ -168,5 +195,22 @@ public class ShopsFragment extends BaseFragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent();
+        switch(v.getId()){
+            case R.id.shops_map_indicator:
+                Log.i(TAG, "shops_map_indicator clicked");
+                intent.setClass(mParentActivity, ShopsMapActivity.class);
+                break;
+
+            case R.id.shops_search_indicator:
+                Log.i(TAG, "shops_search_indicator clicked");
+                intent.setClass(mParentActivity, SearchActivity.class);
+                break;
+        }
+        mParentActivity.startActivity(intent);
     }
 }
