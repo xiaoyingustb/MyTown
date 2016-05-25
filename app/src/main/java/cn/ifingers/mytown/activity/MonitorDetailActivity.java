@@ -64,7 +64,7 @@ public class MonitorDetailActivity extends Activity implements MediaPlayer.OnCom
         }
         // ~~~ 获取播放地址和标题
         Intent intent = getIntent();
-        mPath = "http://www.androidbegin.com/tutorial/AndroidCommercial.3gp";
+        mPath = "rtmp://live.hkstv.hk.lxdns.com/live/hks";
         mTitle = "星空卫视";
 
         // ~~~ 绑定控件
